@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SafeCheck AI: check a profile before you trust it</title>
+  <meta name="description" content="Check a social media or dating profile for scam warning signs. Runs in your browser. Nothing is stored.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <div class="wrap bar">
+      <span class="brand">SafeCheck <span class="ai">AI</span></span>
+      <span class="tagline">Check a profile before you trust it</span>
+    </div>
+  </header>
+
+  <div class="disclaimer" role="note">
+    <div class="wrap"><strong>Preliminary assessment, not proof.</strong> SafeCheck AI looks for warning signs. It cannot confirm that a profile is real or fake.</div>
+  </div>
+
+  <main id="main" class="wrap">
+    <noscript><p class="error">This tool needs JavaScript to run in your browser.</p></noscript>
+
+    <section class="intro">
+      <h1>Is this profile safe to trust?</h1>
+      <p>Enter what you can see on the profile and any message you received. We check for common scam and fake-account signs, explain each one, and show you how to report.</p>
+      <p class="privacy">Everything stays in your browser. Nothing is sent or stored.</p>
+    </section>
+
+    <form id="checkForm" class="card" novalidate>
+      <div class="field">
+        <label for="platform">Where did you find this profile?</label>
+        <select id="platform" name="platform"></select>
+      </div>
+
+      <div class="field">
+        <label for="profile">Username or profile link</label>
+        <input id="profile" name="profile" type="text" autocomplete="off" placeholder="@name or https://instagram.com/name" required>
+      </div>
+
+      <div class="field">
+        <label for="bio">Bio <span class="hint">(leave empty if there is none)</span></label>
+        <textarea id="bio" name="bio" rows="2" placeholder="Paste the profile bio"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="age">How old is the account?</label>
+        <select id="age" name="age">
+          <option value="unknown">I don't know</option>
+          <option value="lt7">Less than 1 week</option>
+          <option value="7to30">1 week to 1 month</option>
+          <option value="30to90">1 to 3 months</option>
+          <option value="90to365">3 months to 1 year</option>
+          <option value="gt365">More than 1 year</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">Message you received <span class="hint">(optional, English or Hinglish)</span></label>
+        <textarea id="message" name="message" rows="5" placeholder="Paste the message or chat here"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="shot">Screenshot <span class="hint">(optional)</span></label>
+        <input id="shot" name="shot" type="file" accept="image/*">
+        <p class="hint">Stays in your browser. It is not uploaded or stored anywhere.</p>
+        <p id="shotError" class="error" role="alert" hidden></p>
+        <figure id="shotPreview" class="preview" hidden>
+          <img id="shotImg" alt="Preview of your screenshot">
+          <figcaption id="shotName"></figcaption>
+          <button type="button" id="shotRemove" class="link">Remove screenshot</button>
+        </figure>
+      </div>
+
+      <p id="formError" class="error" role="alert" hidden></p>
+
+      <div class="actions">
+        <button type="submit" class="primary">Check this profile</button>
+        <button type="button" id="example" class="secondary">Try an example</button>
+        <button type="reset" id="clear" class="secondary">Clear</button>
+      </div>
+    </form>
+
+    <section id="results" hidden aria-labelledby="resultTitle">
+      <div id="result" class="result card">
+        <p class="eyebrow">Result</p>
+        <h2 id="resultTitle" tabindex="-1"><span id="levelBadge" class="badge"></span></h2>
+        <p id="levelText" class="lead"></p>
+        <p id="signalCount" class="muted"></p>
+        <h3>What we noticed</h3>
+        <ul id="signalList" class="signals"></ul>
+        <p class="note"><strong>Preliminary assessment, not proof.</strong> A low result does not mean a profile is safe, and a high result does not prove it is fake.</p>
+      </div>
+
+      <div class="card" id="reporting">
+        <h2>How to report</h2>
+        <h3 id="platformHeading"></h3>
+        <ol id="platformSteps"></ol>
+        <h3>For every platform</h3>
+        <ol id="commonSteps"></ol>
+        <div class="help">
+          <a class="btn" href="https://cybercrime.gov.in" target="_blank" rel="noopener">Report on cybercrime.gov.in</a>
+          <a class="btn" href="tel:1930">Call 1930 (financial fraud)</a>
+          <a class="btn alert" href="tel:112">Call 112 (immediate danger)</a>
+        </div>
+      </div>
+
+      <div class="card" id="draftCard">
+        <h2>Your report draft</h2>
+        <p class="muted">Built only from what you entered. Edit anything before you use it, and fill in the [brackets].</p>
+        <label for="draft" class="sr">Report draft</label>
+        <textarea id="draft" rows="18" spellcheck="true"></textarea>
+        <div class="actions">
+          <button type="button" id="copy" class="primary">Copy draft</button>
+          <button type="button" id="download" class="secondary">Download .txt</button>
+          <button type="button" id="resetDraft" class="secondary">Reset draft</button>
+        </div>
+        <p id="copyStatus" class="status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Built for recHERsion 2026. SafeCheck AI gives a preliminary assessment, not proof.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
