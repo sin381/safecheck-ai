@@ -1,6 +1,6 @@
 # safecheck-ai
 “AI-powered fake profile risk checker for women’s safety”
-SafeCheck AI 🛡️
+SafeCheck AI 
 
 AI-Assisted Online Safety for Women
 
